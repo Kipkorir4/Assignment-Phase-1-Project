@@ -1,0 +1,115 @@
+body {
+    padding-top: 50px;
+    margin-bottom: 100px;
+}
+
+#ingredientInput {
+    height: 60px;
+    font-size: 20px;
+    margin-left: 0px;
+}
+
+#ingredientInput::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+#nameCont {
+    background: linear-gradient(90deg, #FFA500, #5AFF00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#knn-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    margin-left: 60px;
+    margin-top: 20px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+#appName{
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-bottom: 80px;
+}
+
+#suggestedMeals {
+    margin-bottom: 200px;
+}
+
+.card-text {
+    display: block;
+}
+
+.card-subtitle {
+    margin-top: 55px;
+}
+
+.card-title {
+    font-size: 1.5rem; 
+    text-transform: uppercase;
+}
+
+.card.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card.row .col-md-6:first-child {
+    flex: 0 0 300px; 
+    margin-right: 20px; 
+}
+
+.card.row .col-md-6:last-child {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.card-subtitle, .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card.row .col-md-6 {
+    flex: 0 0 50%;
+}
+
+.card.row .col-md-6 img {
+    width: 100%;
+    height: auto;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: white; 
+    color: black; 
+    text-align: center;
+    border: 1px solid black; 
+    border-radius: 6px;
+    padding: 5px 5px; 
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
