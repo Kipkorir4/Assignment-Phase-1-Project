@@ -23,13 +23,31 @@ knnLogo.addEventListener('click', () => {
 // Function to fetch meals based on multiple ingredients
 async function fetchMealsByIngredients(ingredients) {
     const ingredientArray = ingredients.split(',').map(ingredient => ingredient.trim());
-    const promises = ingredientArray.map(ingredient =>
-        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
-            .then(response => response.json())
-            .then(data => data.meals.map(meal => ({ ...meal, idMeal: meal.idMeal }))) // Add idMeal property
-    );
+    const promises = [];
+    
+    // Loop through each ingredient to fetch meals
+    for (const ingredient of ingredientArray) {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+        const data = await response.json();
+        const meals = data.meals.map(meal => ({ ...meal, idMeal: meal.idMeal }));
+        promises.push(meals);
+    }
+    
+    // Wait for all promises to resolve
     const mealsArray = await Promise.all(promises);
-    return mealsArray.flat();
+    
+    // Find meals that match all ingredients
+    const matchingMeals = mealsArray.reduce((accumulator, currentValue) => {
+        // If accumulator is empty, return currentValue
+        if (accumulator.length === 0) {
+            return currentValue;
+        }
+        
+        // Otherwise, filter out meals that are not in currentValue
+        return accumulator.filter(meal => currentValue.some(item => item.idMeal === meal.idMeal));
+    }, []);
+    
+    return matchingMeals;
 }
 
 // Function to fetch recipe details by meal ID
